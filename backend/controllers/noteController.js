@@ -4,6 +4,8 @@
 const asyncHandler = require('express-async-handler');
 // Imports the Note model from the noteModel file.
 const Note = require('../models/noteModel');
+// Imports the User model from the userModel file.
+const User = require('../models/userModel');
 
 // Uses the async-await keywords because the app shouldn't stall anytime it performs CRUD operations with the document.
 // This function gets all the documents in the notes collection.
@@ -23,9 +25,10 @@ const setNote = asyncHandler(async (req, res) => {
         throw new Error('Please add text');
     }
 
-    // If req.body.text exists, note creates a document with text.
+    // If req.body.text exists, note creates a document with text and the user who created it.
     const note = await Note.create({
-        text: req.body.text
+        text: req.body.text,
+        user: req.user.id
     });
 
     res.status(200).json(note);
@@ -42,6 +45,17 @@ const updateNote = asyncHandler(async (req, res) => {
         throw new Error('Note not found');
     }
 
+    // Only allows the user who created the note to also update it.
+    const user = await User.findById(req.user.id);
+    if(!user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+    if(note.user.toString() !== user.id) {
+        res.status(401);
+        throw new Error('User not authorized');
+    }
+
     // If note does find a specific document, updatedNote takes note, changes its value(s) (req.body), and makes this a new document ({new: true}).
     const updatedNote = await Note.findByIdAndUpdate(req.params.id, req.body, {new: true});
 
@@ -55,6 +69,16 @@ const deleteNote = asyncHandler(async (req, res) => {
     if(!note) {
         res.status(400);
         throw new Error('Note not found');
+    }
+
+    const user = await User.findById(req.user.id);
+    if(!user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+    if(note.user.toString() !== user.id) {
+        res.status(401);
+        throw new Error('User not authorized');
     }
 
     // Deletes the document.

@@ -9,6 +9,13 @@ const noteSchema = mongoose.Schema({
         type: String,
         // The text value is required, and will display the message if omitted.
         required: [true, 'Please include text']
+    },
+    user: {
+        // The type value is the user's _id.
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        // ref is to refer to which model the ObjectId pertains to.
+        ref: 'User'
     }
 // Includes the createdAt and updatedAt fields.
 }, {timestamps: true});

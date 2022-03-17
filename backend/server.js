@@ -26,8 +26,10 @@ app.use(express.json());
 // {extended: false} signifies the req.body object will only contain strings.
 app.use(express.urlencoded({extended: false}));
 
-// '/noteworthy' appends to 'http:localhost:5000' as the path for the router instance in the noteRoutes file.
+// '/noteworthy' appends to 'http://localhost:5000' as the path for the router instance in the noteRoutes file.
 app.use('/noteworthy', require('./routes/noteRoutes'));
+// '/users' appends to http://localhost:5000' as the path for the router instance in the userRoutes file.
+app.use('/users', require('./routes/userRoutes'));
 
 // Runs the errorHandler function if there is an error.
 app.use(errorHandler);

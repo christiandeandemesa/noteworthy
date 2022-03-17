@@ -1,4 +1,4 @@
-// This file holds the custom error handler.
+// This file holds the middleware for the custom error handler.
 
 // All middleware must take req (request), res (response), and next as arguments.
 // err (error) is also included since this middleware handles errors.
