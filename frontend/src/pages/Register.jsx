@@ -1,3 +1,5 @@
+// This file is the Register component.
+
 function Register() {
     return (
         <div>Register</div>

@@ -1,4 +1,6 @@
-// Imports Link from react-router-dom.
+// This file is the Header component.
+
+// Imports Link from the react-router-dom package.
 import {Link} from 'react-router-dom';
 // import react-icons
 

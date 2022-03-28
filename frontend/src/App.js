@@ -1,4 +1,4 @@
-// Imports BrowserRouter, Routes, and Route from react-router-dom.
+// Imports BrowserRouter, Routes, and Route from the react-router-dom package.
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 // Imports the Header component.
 import Header from './components/Header';
@@ -15,7 +15,7 @@ function App() {
     // BrowserRouter must be wrapped around the entire app.
     <BrowserRouter>
       <div>
-        {/* Header component. */}
+        {/* Example of using a component. */}
         <Header/>
         {/* Routes holds all of the Route paths. */}
         <Routes>
