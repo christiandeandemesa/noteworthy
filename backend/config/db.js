@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // Uses the async-await keywords because the app shouldn't stall anytime it needs to connect to the database.
 const connectDB = async () => {
-
     // The try-catch code blocks try to run the code block within try, or, if there is an exception, runs the code block within catch instead.
     try {
         // mongoose.connect() sets up a connection to the database, and the database being used is the value of MONGO_URI from the .env file.

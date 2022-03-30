@@ -2,6 +2,8 @@
 
 // Imports the express package.
 const express = require('express');
+// Imports the cors package.
+const cors = require('cors');
 // Imports the colors package.
 const colors = require('colors');
 // Imports and configures the dotenv package.
@@ -25,6 +27,11 @@ app.use(express.json());
 // express.urlencoded parses incoming urlencoded payload requests (e.g. strings or arrays).
 // {extended: false} signifies the req.body object will only contain strings.
 app.use(express.urlencoded({extended: false}));
+
+// cors allows the express server to respond to preflight requests.
+// A preflight request is sent before an actual request to see which actual requests the express server accepts.
+// Setting the credentials to true allows all requests from the origins.
+app.use(cors({credentials: true, origins: 'http://localhost:5000'}));
 
 // '/noteworthy' appends to 'http://localhost:5000' as the path for the router instance in the noteRoutes file.
 app.use('/noteworthy', require('./routes/noteRoutes'));

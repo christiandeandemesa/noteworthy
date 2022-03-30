@@ -2,7 +2,7 @@
 
 // Imports configureStore from the redux toolkit.
 import { configureStore } from '@reduxjs/toolkit';
-// Imports the authReducer function.
+// Imports authSlice's reducer function and renames it as authReducer.
 import authReducer from '../features/auth/authSlice';
 
 /*
