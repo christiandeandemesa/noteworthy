@@ -36,7 +36,7 @@ function Register() {
     useEffect(() => {
         // If isError is true, display a toast error notification with the message from authSlice.
         if(isError) toast.error(message);
-        // If isSuccess is true or user exists, redirect to http://localhost:3000/.
+        // If isSuccess is true or a user is logged in, redirect to the dashboard page.
         if(isSuccess || user) navigate('/');
         // Dispatch authSlice's reset action creator function.
         dispatch(reset());
@@ -69,7 +69,7 @@ function Register() {
     }
 
     // If isLoading is true, return the Spinner component instead of the below return.
-    if(isLoading) return <Spinner/>
+    if(isLoading) return <Spinner/>;
 
     return (
         <div>

@@ -82,16 +82,8 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getCurrUser = asyncHandler(async (req, res) => {
-    // Destructures _id, firstName, lastName, and email from the user document found using its id.
-    // Notice it's _id because it was changed from user.id in the login and register JSON objects.
-    const {_id, firstName, lastName, email} = await User.findById(req.user.id);
-
-    res.status(200).json({
-        id: _id,
-        firstName,
-        lastName,
-        email
-    });
+    // req.user comes from authMiddleware.js.
+    res.status(200).json(req.user);
 });
 
 // This function generates an authorization token for a user.

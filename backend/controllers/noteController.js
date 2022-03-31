@@ -38,7 +38,6 @@ const setNote = asyncHandler(async (req, res) => {
 const updateNote = asyncHandler(async (req, res) => {
     // note is a specific document searched by its id.
     const note = await Note.findById(req.params.id);
-
     // If note does not find a specific document, throw an error.
     if(!note) {
         res.status(400);
@@ -46,12 +45,12 @@ const updateNote = asyncHandler(async (req, res) => {
     }
 
     // Only allows the user who created the note to also update it.
-    const user = await User.findById(req.user.id);
-    if(!user) {
+    // Again req.user comes from authMiddleware.js.
+    if(!req.user) {
         res.status(401);
         throw new Error('User not found');
     }
-    if(note.user.toString() !== user.id) {
+    if(note.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');
     }
@@ -65,18 +64,16 @@ const updateNote = asyncHandler(async (req, res) => {
 // This function deletes a specific document in the notes collection.
 const deleteNote = asyncHandler(async (req, res) => {
     const note = await Note.findById(req.params.id);
-
     if(!note) {
         res.status(400);
         throw new Error('Note not found');
     }
 
-    const user = await User.findById(req.user.id);
-    if(!user) {
+    if(!req.user) {
         res.status(401);
         throw new Error('User not found');
     }
-    if(note.user.toString() !== user.id) {
+    if(note.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');
     }

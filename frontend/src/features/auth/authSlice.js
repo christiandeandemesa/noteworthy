@@ -41,6 +41,20 @@ export const register = createAsyncThunk('auth/register', async (user, thunkAPI)
     }
 });
 
+/*
+Exports the login thunk function where the payload callback function is similar to the register's payload callback function, except it runs the authService object's 
+login function.
+*/
+export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+    try {
+        return await authService.login(user);
+    }
+    catch(err) {
+        const message = (err.res && err.res.data && err.res.data.message) || err.message || err.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // Exports the logout thunk function where the payload callback function runs the authService object's logout function.
 export const logout = createAsyncThunk('auth/logout', async () => {
     await authService.logout();
@@ -89,6 +103,29 @@ export const authSlice = createSlice({
             message is the action's payload.
             */
             .addCase(register.rejected, (state, action) => {
+                state.user = null
+                state.isError = true
+                state.isLoading = false
+                state.message = action.payload
+            })
+            // If the login thunk function's promise is pending, the authSlice's state's loading status is true.
+            .addCase(login.pending, state => {
+                state.isLoading = true
+            })
+            /*
+            If the login thunk function's promise is fulfilled, the authSlice's state's user is the action object's payload, its success status is true, and its loading 
+            status is false.
+            */
+            .addCase(login.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.isSuccess = true
+                state.isLoading = false
+            })
+            /*
+            If the login thunk function's promise is rejected, the authSlice's state's user is null, its error status is true, its loading status is false, and its 
+            message is the action's payload.
+            */
+            .addCase(login.rejected, (state, action) => {
                 state.user = null
                 state.isError = true
                 state.isLoading = false

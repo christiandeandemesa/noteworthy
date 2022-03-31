@@ -2,6 +2,11 @@
 
 // Imports useState and useEffect from the react package.
 import {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {toast} from 'react-toastify';
+import {login, reset} from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
 // Import react-icons.
 
 function Login() {
@@ -14,11 +19,31 @@ function Login() {
     // Destructures the keys as variables from the formData state.
     const {email, password} = formData;
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user, isError, isSuccess, isLoading, message} = useSelector(state => state.auth);
+
+    useEffect(() => {
+        if(isError) toast.error(message);
+        if(isSuccess || user) navigate('/');
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
+
     // onSubmit function submits the form's information.
     const onSubmit = e => {
         // Stops the component from re-rendering and refreshing the page.
         e.preventDefault();
+
+        const userData = {
+            email,
+            password
+        }
+        // Dispatch authSlice's login thunk function with the above userData object as the user argument.
+        dispatch(login(userData));
     }
+
+    if(isLoading) return <Spinner/>;
 
     // onChange function updates a specific part of the formData state.
     const onChange = e => {
