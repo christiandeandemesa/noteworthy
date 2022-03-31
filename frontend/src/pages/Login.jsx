@@ -86,7 +86,7 @@ function Login() {
                         onChange={onChange}
                     />
                     <input
-                        type='text'
+                        type='password'
                         name='password'
                         value={password}
                         placeholder='Enter your password'

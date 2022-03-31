@@ -105,14 +105,14 @@ function Register() {
                         onChange={onChange}
                     />
                     <input
-                        type='text'
+                        type='password'
                         name='password'
                         value={password}
                         placeholder='Enter your password'
                         onChange={onChange}
                     />
                     <input
-                        type='text'
+                        type='password'
                         name='confirmPassword'
                         value={confirmPassword}
                         placeholder='Confirm your password'
