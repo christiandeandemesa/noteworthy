@@ -1,8 +1,9 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is the NoteForm component.
 
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-// ???
+// Imports the createNote thunk function.
 import {createNote} from '../features/notes/noteSlice';
 
 function NoteForm() {
@@ -13,9 +14,9 @@ function NoteForm() {
     const onSubmit = e => {
         e.preventDefault();
 
-        // ???
+        // Dispatches the createNote thunk function by passing in the text's state as an object.
         dispatch(createNote({text}));
-        // ???
+        // Changes text's state to be an empty string again to create additional notes.
         setText('');
     }
 

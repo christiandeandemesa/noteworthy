@@ -1,10 +1,11 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is the API call to the user register and login API.
 
 // Imports axios from the axios package.
 import axios from 'axios';
 
-// This is the user register and login API path in server.js appended to the proxy in package.json.
-// Note that we can only access the API if we have server side cors installed.
+// This is the user register and login API path in server.js.
+// Note that we can only access the API if we have cors installed in server.js.
 const API_URL = 'http://localhost:5000/users/';
 
 // The register function makes an asynchronous POST request to the API path with the userData to register and create a new user.
@@ -33,7 +34,7 @@ const logout = () => {
     localStorage.removeItem('user');
 }
 
-// authService is an object holding the above function(s).
+// authService is an object holding the above functions.
 const authService = {
     register,
     login,

@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is the Register component.
 
 import {useState, useEffect} from 'react';

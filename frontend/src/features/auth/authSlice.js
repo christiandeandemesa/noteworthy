@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is a slice of the entire application's state, particularly the user's authorization.
 
 // Imports createSlice and createAsyncThunk from the redux toolkit.

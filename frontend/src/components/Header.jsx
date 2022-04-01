@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is the Header component.
 
 // Imports Link from the react-router-dom package.

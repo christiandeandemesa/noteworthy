@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is the Login component.
 
 // Imports useState and useEffect from the react package.
