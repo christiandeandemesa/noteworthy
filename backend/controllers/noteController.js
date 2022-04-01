@@ -1,10 +1,11 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is all the request handling logic for routes (i.e. connects the router instance and models).
 
 // Imports middleware for handling exceptions inside async express routes, and passes exceptions to the express error handler.
 const asyncHandler = require('express-async-handler');
-// Imports the Note model from the noteModel file.
+// Imports the Note model and renames it as Note.
 const Note = require('../models/noteModel');
-// Imports the User model from the userModel file.
+// Imports the User model and renames it as User.
 const User = require('../models/userModel');
 
 // Uses the async-await keywords because the app shouldn't stall anytime it performs CRUD operations with the document.
@@ -12,7 +13,8 @@ const User = require('../models/userModel');
 const getNotes = asyncHandler(async (req, res) => {
     // notes are all the documents.
     // All the functions are MongoDB methods (e.g. find(), create(), etc.).
-    const notes = await Note.find();
+    // {user: req.user.id} only shows the notes the logged in user created.
+    const notes = await Note.find({user: req.user.id});
 
     res.status(200).json(notes);
 });
@@ -38,18 +40,21 @@ const setNote = asyncHandler(async (req, res) => {
 const updateNote = asyncHandler(async (req, res) => {
     // note is a specific document searched by its id.
     const note = await Note.findById(req.params.id);
+
     // If note does not find a specific document, throw an error.
     if(!note) {
         res.status(400);
         throw new Error('Note not found');
     }
 
-    // Only allows the user who created the note to also update it.
+    // Checks if a user is logged in.
     // Again req.user comes from authMiddleware.js.
     if(!req.user) {
         res.status(401);
         throw new Error('User not found');
     }
+
+    // Only allows the user who created the note to also update it.
     if(note.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');
@@ -64,6 +69,7 @@ const updateNote = asyncHandler(async (req, res) => {
 // This function deletes a specific document in the notes collection.
 const deleteNote = asyncHandler(async (req, res) => {
     const note = await Note.findById(req.params.id);
+
     if(!note) {
         res.status(400);
         throw new Error('Note not found');
@@ -73,6 +79,7 @@ const deleteNote = asyncHandler(async (req, res) => {
         res.status(401);
         throw new Error('User not found');
     }
+    
     if(note.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');

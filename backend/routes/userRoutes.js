@@ -1,10 +1,11 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is server side routing for the user register and login API.
 
 const express = require('express');
 const router = express.Router();
-// Destructures and imports the functions from the userController file.
+// Destructures and imports the functions.
 const {registerUser, loginUser, getCurrUser} = require('../controllers/userController');
-const protect = require('../middleware/authMiddleware');
+const protect = require('../middleware/authMiddleware'); // {protect}
 
 // Appends register to the path then runs the registerUser function on a POST request.
 router.post('/register', registerUser);

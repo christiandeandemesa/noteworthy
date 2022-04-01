@@ -1,11 +1,12 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is server side routing for the note CRUD API.
 
 const express = require('express');
 // Creates a router instance to handle routes.
 const router = express.Router();
-// Destructures and imports the functions from the noteController file.
+// Destructures and imports the functions.
 const {getNotes, setNote, updateNote, deleteNote} = require('../controllers/noteController');
-// Imports the protect function from the authMiddleware file.
+// Imports the protect function.
 const protect = require('../middleware/authMiddleware');
 
 // router.route() returns a route to a given path.

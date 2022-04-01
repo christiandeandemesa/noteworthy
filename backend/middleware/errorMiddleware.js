@@ -1,9 +1,10 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file holds the middleware for the custom error handler.
 
 // All middleware must take req (request), res (response), and next as arguments.
 // err (error) is also included since this middleware handles errors.
 const errorHandler = (err, req, res, next) => {
-    // statusCode will either be response's status code, or 500.
+    // statusCode will either be response's status code or 500.
     const statusCode = res.statusCode ? res.statusCode : 500;
     // Changes response's status code to be statusCode.
     res.status(statusCode);

@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file compiles JavaScript code.
 
 // Imports the express package.
@@ -8,9 +9,9 @@ const cors = require('cors');
 const colors = require('colors');
 // Imports and configures the dotenv package.
 const dotenv = require('dotenv').config();
-// Imports the errorHandler function from the errorMiddleware file.
+// Imports the errorHandler function.
 const errorHandler = require('./middleware/errorMiddleware');
-// Imports the connectDB function from the db file.
+// Imports the connectDB function.
 const connectDB = require('./config/db');
 // Assigns the value of PORT from the .env file, or 5000 to port.
 const port = process.env.PORT || 5000;

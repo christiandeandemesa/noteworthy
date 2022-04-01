@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file holds the middleware that protects routes.
 
 // Imports the jsonwebtoken package.

@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file creates the users collection's schema.
 
 const mongoose = require('mongoose');
@@ -13,7 +14,7 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'Please add a email'],
+        required: [true, 'Please add an email'],
         // The email value must be unique from every other user document.
         unique: true
     },
@@ -23,5 +24,5 @@ const userSchema = mongoose.Schema({
     }
 }, {timestamps: true});
 
-// Exports the model with the name of Note using the userSchema.
+// Exports the model with the name of User using the userSchema.
 module.exports = mongoose.model('User', userSchema);

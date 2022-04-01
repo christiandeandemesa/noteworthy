@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file creates the notes collection's schema.
 
 const mongoose = require('mongoose');
@@ -11,7 +12,7 @@ const noteSchema = mongoose.Schema({
         required: [true, 'Please include text']
     },
     user: {
-        // The type value is the user's _id.
+        // The type value is the user's id.
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         // ref is to refer to which model the ObjectId pertains to.

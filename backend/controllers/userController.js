@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file is all the request handling logic for routes (i.e. connects the router instance and models).
 
 const jwt = require('jsonwebtoken');
@@ -6,19 +7,21 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 
-// This function registers a user document in the users collection.
+// This function creates a document in the users collection.
 const registerUser = asyncHandler(async (req, res) => {
     // Destructures firstName, lastName, email, and password from req.body.
     const {firstName, lastName, email, password} = req.body;
+
     // If firstName, lastName, email and/or password don't exist, throw an error.
     if(!firstName || !lastName || !email || !password) {
         res.status(400);
         throw new Error('Please add all fields');
     }
 
-    // userExists could be a user document found using the inputted email.
+    // userExists could be a document in the users collection found using the inputted email.
     const userExists = await User.findOne({email});
-    // If userExists is a user document, throw an error because all user documents must have unique emails.
+
+    // If userExists is a document, throw an error because all documents must have unique emails.
     if(userExists) {
         res.status(400);
         throw new Error('User already exists');
@@ -40,15 +43,16 @@ const registerUser = asyncHandler(async (req, res) => {
     // If creating a user succeeds, send back its data as a JSON object.
     if(user) {
         res.status(201).json({
-            // Notice how the user's id is changed to _id.
+            // Notice how the user's id is changed to _id to mimic Postman.
             _id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             // Generates an authorization token for the user using the below generateToken function, and user._id which comes from the above JSON object.
-            token: generateToken(user._id)
+            token: generateToken(user.id)
         });
     }
+
     // If creating a user fails, throw an error.
     else {
         res.status(400);
@@ -56,11 +60,11 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
-// This function logs in a user by matching it to an existing user document in the users collection.
+// This function logs in a user by matching it to an existing document in the users collection.
 const loginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
 
-    // user should be a user document found using the inputted email.
+    // user should be a document found using the inputted email.
     const user = await User.findOne({email});
 
     // If user exists and the inputted password matches the hashedPassword, send back its data as a JSON object.
@@ -70,7 +74,7 @@ const loginUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: generateToken(user._id)
+            token: generateToken(user.id)
         });
     }
 

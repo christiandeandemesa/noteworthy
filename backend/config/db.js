@@ -1,3 +1,4 @@
+// THIS FILE HAS BEEN DOUBLE-CHECKED FOR BUGS
 // This file connects with MongoDB.
 
 // Imports the mongoose package.
