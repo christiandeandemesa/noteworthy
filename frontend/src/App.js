@@ -12,10 +12,12 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 // Imports the Register component.
 import Register from './pages/Register';
+// Imports the EditNote component.
+import EditNote from './pages/EditNote';
 
 function App() {
   return (
-    <>
+    <div id='app'>
       {/* BrowserRouter connects the browser's url with the React app.
           BrowserRouter must be wrapped around the entire app. */}
       <BrowserRouter>
@@ -29,12 +31,15 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/edit/:id' element={<EditNote />} />
+            {/* If the user tries to manually type in a path that doesn't match the above paths ('*' means all), it renders the Dashboard component. */}
+            <Route path='*' element={<Dashboard />} />
           </Routes>
         </div>
       </BrowserRouter>
       {/* ToastContainer displays all the toast notifications. */}
       <ToastContainer />
-    </>
+    </div>
   );
 }
 

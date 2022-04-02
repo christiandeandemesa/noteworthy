@@ -1,0 +1,27 @@
+#login {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 2%;
+
+    #header {
+        width: 31vw;
+
+        h1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 23%;
+        }
+    }
+    
+    #form {
+        form {
+            width: 31vw;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

@@ -8,7 +8,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import {login, reset} from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
-// Import react-icons.
+// Imports all Fi react-icons.
+import * as FiIcons from 'react-icons/fi';
+import styles from './Login.module.scss';
 
 function Login() {
     // formData's initial state is an object with empty strings.
@@ -33,6 +35,7 @@ function Login() {
 
     // onSubmit function submits the form's information.
     const onSubmit = e => {
+        console.log('Hello');
         // Stops the component from re-rendering and refreshing the page.
         e.preventDefault();
 
@@ -62,16 +65,17 @@ function Login() {
     }
 
     return (
-        <div>
-            <section>
+        <div id={styles.login}>
+            <section id={styles.header}>
                 <h1>
-                    {/* react-icon */}
                     Login
+                    {/* Example of using a specific FiIcon. */}
+                    <FiIcons.FiLogIn/>
                 </h1>
                 <p>Please log into your account</p>
             </section>
 
-            <section>
+            <section id={styles.form}>
                 {/* When the button within this form element is clicked, run the onSubmit function. */}
                 <form onSubmit={onSubmit}>
                     <input
@@ -85,6 +89,7 @@ function Login() {
                         placeholder='Enter your email'
                         // Whenever a character is added or deleted from the input, run the onChange function.
                         onChange={onChange}
+                        className={styles.input}
                     />
                     <input
                         type='password'
@@ -92,8 +97,9 @@ function Login() {
                         value={password}
                         placeholder='Enter your password'
                         onChange={onChange}
+                        className={styles.input}
                     />
-                    <button>Submit</button>
+                    <button variant="primary">Submit</button>{' '}
                 </form>
             </section>
         </div>

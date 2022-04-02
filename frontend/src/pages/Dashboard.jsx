@@ -11,6 +11,7 @@ import NoteForm from '../components/NoteForm';
 // Imports the NoteItem component.
 import NoteItem from '../components/NoteItem';
 import Spinner from '../components/Spinner';
+import styles from './Dashboard.module.scss';
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -35,14 +36,13 @@ function Dashboard() {
     if(isLoading) return <Spinner/>;
 
     return (
-        <div>
-            <section>
+        <div id={styles.dashboard}>
+            <section id={styles.header}>
                 {/* If a user is logged in, display the user's first and last name. */}
                 <h1>Welcome {user && user.firstName} {user && user.lastName}</h1>
-                <p>Notes Dashboard</p>
             </section>
             <NoteForm/>
-            <section>
+            <section id={styles.notes}>
                 {notes.length > 0 ? (
                     <div>
                         {notes.map(note => (

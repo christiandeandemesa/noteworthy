@@ -12,7 +12,9 @@ import {toast} from 'react-toastify';
 import {register, reset} from '../features/auth/authSlice';
 // Imports the Spinner component.
 import Spinner from '../components/Spinner';
-// Import react-icons.
+// Imports all Ai react-icons.
+import * as AiIcons from 'react-icons/ai';
+import styles from './Register.module.scss';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -73,53 +75,65 @@ function Register() {
     if(isLoading) return <Spinner/>;
 
     return (
-        <div>
-            <section>
+        <div id={styles.register}>
+            <section id={styles.header}>
                 <h1>
-                    {/* react-icon */}
                     Register
+                    {/* Example of using a specific AiIcion. */}
+                    <AiIcons.AiOutlineLogin/>
                 </h1>
                 <p>Please create an account</p>
             </section>
 
-            <section>
+            <section id={styles.login}>
                 <form onSubmit={onSubmit}>
-                    <input
-                        type='text'
-                        name='firstName'
-                        value={firstName}
-                        placeholder='Enter your first name'
-                        onChange={onChange}
-                    />
-                    <input
-                        type='text'
-                        name='lastName'
-                        value={lastName}
-                        placeholder='Enter your last name'
-                        onChange={onChange}
-                    />
-                    <input
-                        type='text'
-                        name='email'
-                        value={email}
-                        placeholder='Enter your email'
-                        onChange={onChange}
-                    />
-                    <input
-                        type='password'
-                        name='password'
-                        value={password}
-                        placeholder='Enter your password'
-                        onChange={onChange}
-                    />
-                    <input
-                        type='password'
-                        name='confirmPassword'
-                        value={confirmPassword}
-                        placeholder='Confirm your password'
-                        onChange={onChange}
-                    />
-                    <button>Submit</button>
+                    <div id={styles.form_group_one}>
+                        <input
+                            type='text'
+                            name='firstName'
+                            value={firstName}
+                            placeholder='Enter your first name'
+                            onChange={onChange}
+                            className={styles.input_one}
+                        />
+                        <input
+                            type='text'
+                            name='lastName'
+                            value={lastName}
+                            placeholder='Enter your last name'
+                            onChange={onChange}
+                            className={styles.input_one}
+                        />
+                    </div>
+                    <div id={styles.form_group_two}>
+                        <input
+                            type='text'
+                            name='email'
+                            value={email}
+                            placeholder='Enter your email'
+                            onChange={onChange}
+                            className={styles.input_two}
+                        />
+                        <input
+                            type='password'
+                            name='password'
+                            value={password}
+                            placeholder='Enter your password'
+                            onChange={onChange}
+                            className={styles.input_two}
+                        />
+                    </div>
+                    <div id={styles.form_group_three}>
+                        <input
+                            type='password'
+                            name='confirmPassword'
+                            value={confirmPassword}
+                            placeholder='Confirm your password'
+                            onChange={onChange}
+                            className={styles.input_three}
+                        />
+                        <button>Submit</button>
+                    </div>
                 </form>
             </section>
         </div>

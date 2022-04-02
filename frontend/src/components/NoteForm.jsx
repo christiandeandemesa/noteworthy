@@ -5,6 +5,7 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 // Imports the createNote thunk function.
 import {createNote} from '../features/notes/noteSlice';
+import styles from './NoteForm.module.scss';
 
 function NoteForm() {
     const [text, setText] = useState('');
@@ -21,17 +22,14 @@ function NoteForm() {
     }
 
     return (
-        <section>
+        <section id={styles.note}>
             <form onSubmit={onSubmit}>
-                {/* htmlFor attribute associates this label with the element that has an id of text. */}
-                <label htmlFor='text'>Note</label>
                 <input
                     type='text'
                     name='text'
                     value={text}
                     onChange={e => setText(e.target.value)}
                     // id attribute was added to use the label tag's htmlFor attribute.
-                    id='text'
                 />
                 <button>Add Note</button>
             </form>

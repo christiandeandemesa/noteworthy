@@ -6,7 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Imports the logout thunk function.
 import { logout, reset } from '../features/auth/authSlice';
-// import react-icons
+// Imports this component's sass stylesheet module.
+import styles from './Header.module.scss';
 
 function Header() {
     const navigate = useNavigate();
@@ -22,33 +23,29 @@ function Header() {
     }
 
     return (
-        <header>
-            <div>
-                {/* Link works similar to <a href> by creating a hyperlink on the given text (e.g. Dashboard) to the url it appends. */}
-                <Link to='/'>Dashboard</Link>
-                {/* react-icon */}
-            </div>
+        // Example of using the sass stylesheet module id.
+        <header id={styles.navbar}>
+            {/* Link works similar to <a href> by creating a hyperlink on the given text (e.g. Dashboard) to the url it appends. */}
+            {/* Example of using the sass stylesheet class. */}
+            <Link to='/' className={styles.link}>Dashboard</Link>
             {user ? (
                 // If user exists, show the below div element.
                 <div>
                     {/* If this button is clicked, run the above onLogout function. */}
-                    <button onClick={onLogout}>Logout</button>
-                    {/* react-icon */ }
+                    <button onClick={onLogout} id={styles.button}>Logout</button>
                 </div >
             ) : (
                 // If a user does not exist, show the below fragment <> element.
                 <>
                     <div>
-                        <Link to = '/login'>Login</Link>
-                        {/* react-icon */ }
+                        <Link to = '/login' className={styles.link}>Login</Link>
                     </div >
-                    <div>
-                        <Link to='/register'>Register</Link>
-                        {/* react-icon */}
+                    <div className={styles.link} id={styles.right_link}>
+                        <Link to='/register' className={styles.link}>Register</Link>
                     </div>
                 </>
             )
-}
+            }
         </header >
     );
 }
