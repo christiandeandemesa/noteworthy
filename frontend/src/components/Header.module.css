@@ -1,0 +1,32 @@
+#navbar {
+  height: 8vh;
+  background: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5%;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+#right_link {
+  margin-right: 5%;
+}
+
+#button {
+  background: none;
+  color: white;
+  border: none;
+  margin-right: 60px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=Header.module.css.map */

@@ -1,0 +1,11 @@
+#note {
+  width: 20vw;
+}
+
+#note form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 6%;
+}
+/*# sourceMappingURL=NoteForm.module.css.map */

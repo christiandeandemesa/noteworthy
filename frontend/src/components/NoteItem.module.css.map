@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;EAC7B,UAAU,EAAE,EAAE;CAWjB;;AAdD,AAKI,KALC,CAKD,EAAE,CAAC;EACC,KAAK,EAAE,GAAG;CACb;;AAPL,AASI,KATC,CASD,QAAQ,CAAC;EACL,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;CAChC",
+    "sources": [
+        "NoteItem.module.scss"
+    ],
+    "names": [],
+    "file": "NoteItem.module.css"
+}
